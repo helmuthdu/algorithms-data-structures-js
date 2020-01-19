@@ -1,7 +1,7 @@
 const reverseInt = require('./reverseint');
 
 describe('reverse int', () => {
-  test('function exists', () => {
+  test('method exists', () => {
     expect(reverseInt).toBeDefined();
   });
 
