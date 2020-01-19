@@ -6,7 +6,7 @@
 //   reverse('hello') === 'olleh'
 //   reverse('Greetings!') === '!sgniteerG'
 
-const reverseLoop = str => {
+const reverseStringLoop = str => {
   let reversed = '';
 
   for (let character of str) {
@@ -16,14 +16,19 @@ const reverseLoop = str => {
   return reversed;
 };
 
-const reverseArray = str =>
+const reverseStringArray = str =>
   str
     .split('')
     .reverse()
     .join('');
 
-const reverseReduce = str => str.split('').reduce((acc, char) => char + acc, '');
+const reverseStringReduce = str => str.split('').reduce((acc, char) => char + acc, '');
 
-const reverseRecursion = str => (str ? reverseRecursion(str.substr(1)) + str[0] : str);
+const reverseStringRecursion = str => (str ? reverseStringRecursion(str.substr(1)) + str[0] : str);
 
-module.exports = { reverseLoop, reverseArray, reverseReduce, reverseRecursion };
+module.exports = {
+  reverseStringLoop,
+  reverseStringArray,
+  reverseStringReduce,
+  reverseStringRecursion,
+};
