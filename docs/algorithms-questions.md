@@ -29,9 +29,9 @@ Engineers*medium.com](https://medium.com/siliconwat/data-structures-in-javascrip
 
 ## Primer
 
-Applied to code, an algorithm is just a function that transforms a certain **input\*** data structure \*into a certain
-**output\*** data structure\*. The **logic\*** inside* decides the transformation. First and foremost, the inputs and
-outputs should *clearly\* be defined, ideally, as **unit tests**. This requires fully understanding the problem at hand,
+Applied to code, an algorithm is just a function that transforms a certain *input **data structure** into a certain
+**output** data structure*. The **logic** *inside* decides the transformation. First and foremost, the inputs and
+outputs should *clearly* be defined, ideally, as **unit tests**. This requires fully understanding the problem at hand,
 which is not to be underestimated, because a thorough analysis of the problem can surface the solution naturally,
 without needing to write any code.
 
@@ -42,15 +42,15 @@ be needed? How many loops and what kinds? Are there any clever built-in methods 
 kind of caching mechanisms? *Generally, memory optimizations (space) will need to be sacrificed for performance gains
 (time).
 
-> # To make the problem more concrete, draw **diagrams**!
+> ## To make the problem more concrete, draw **diagrams**!
 
-When a high-level structure of the solution begins to appear, the **pseudocode **can begin. To really impress the
-interviewer, look _ahead_ for opportunities to refactor and **reuse\*** \*code. Sometimes, similar-behaving functions
+When a high-level structure of the solution begins to appear, the **pseudocode** can begin. To really impress the
+interviewer, look _ahead_ for opportunities to refactor and **reuse** code. Sometimes, similar-behaving functions
 can be combined into a more general function that accepts an extra parameter. Other times, de-parametrization through
 **currying** is better. Keeping functions **pure** to ease testing and maintenance also shows foresight. In other words,
 consider **architectural** and **design patterns** in the calculus of your decisions.
 
-> # If anything is unclear, _ask_ for clarification!
+> ## If anything is unclear, _ask_ for clarification!
 
 ### Big O
 
@@ -88,7 +88,7 @@ of an algorithm, the intuitive feel for what is truly negligible is as important
 
 ### Arrays
 
-The cleanest algorithm usually takes advantage of \*standard **_objects_\*** inherent in the language. Arguably the most
+The cleanest algorithm usually takes advantage of standard **_objects_** inherent in the language. Arguably the most
 important in computer science is Arrays. In JavaScript, no other object has more utility methods than arrays. Array
 methods worth remembering are: sort, reverse, slice, and splice. Array elements are inserted beginning at the _0th
 index_. This means the last element is at array.length — 1. Arrays are the most optimal for _indexing_ (pushing), but
@@ -829,7 +829,7 @@ describe('Max Character', () => {
 
 The trick is to create a table that tallies the appearance of each character as we loop through the string. This table
 can be created using an object literal where the characters are _keys_ and the counters are _values_. Then, we can
-iterate through the table to find the character that has the largest counter by keeping *temporary *variables\* \*for
+iterate through the table to find the character that has the largest counter by keeping *temporary *variables* for
 its key and value.
 
 Though we use two separate loops that iterate through two different inputs (_character string_ and _character map_), the
@@ -1384,7 +1384,7 @@ describe('Ransom Note', () => {
 An obvious solution is to split the magazine words and ransom words into _arrays_ of individual words, and then check
 every ransom word against every magazine word. However, this approach scales in _quadratic_ time, or O(n * m) which is
 not performant. If we create a table of magazine words first, and then check each ransom word against this table, we can
-achieve *linear* time. This is because table lookup in *map objects* occurs in *constant\* time. However, we will need
+achieve *linear* time. This is because table lookup in *map objects* occurs in *constant* time. However, we will need
 to sacrifice space complexity in order to hold the map object in memory.
 
 In code, this means we create a count of every magazine word, and then check if this “hash table” contains the right
@@ -2124,8 +2124,8 @@ describe('Weaving with Queues', () => {
 
 **Analysis**:
 
-At the minimum, the Queue\* *class needs to have an enqueue, dequeue, and peek methods. Then, we can use the while loop
-to *peek* for existence, and if truthy, we can *dequeue* it out and then *enqueue* it to our new* \*queue.
+At the minimum, the Queue* *class needs to have an enqueue, dequeue, and peek methods. Then, we can use the while loop
+to *peek* for existence, and if truthy, we can *dequeue* it out and then *enqueue* it to our new* *queue.
 
 This algorithm has O(n + m) for both time and space because we need to iterate through two different collections and
 store them.
@@ -3496,10 +3496,10 @@ mocha.run();
 
 ### Binary Search Tree
 
-An alternative to sorting a collection is to generate a _Binary Search Tree _(BST)\* *from it. As a BST, searching
+An alternative to sorting a collection is to generate a _Binary Search Tree_ *(BST)* from it. As a BST, searching
 through it is as efficient as binary search. In a similar way, we can discard the half that we know cannot contain our
 desired value at every iteration. In fact, another way to sort a collection is to do a depth-first traversal across this
-tree *in-order\*!
+tree *in-order*!
 
 BST creation happens in _linear_ time and space, but searching through it happens in _logarithmic_ time and _constant_
 space.
