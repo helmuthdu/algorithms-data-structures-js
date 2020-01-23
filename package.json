@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint --cache --fix src/**/*.js",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:cov": "eslint . && jest --coverage"
   },
   "devDependencies": {

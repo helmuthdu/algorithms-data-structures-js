@@ -1,5 +1,8 @@
 module.exports = {
-  testMatch: ['<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}', '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}'],
+  testMatch: [
+    '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}',
+  ],
   coverageDirectory: '<rootDir>/.coverage',
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
   coverageReporters: ['lcov', 'text', 'text-summary'],
