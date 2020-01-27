@@ -1,11 +1,11 @@
 const combine = require('./combinestrings');
 
-describe('reverse int', () => {
+describe('combine strings', () => {
   test('method exists', () => {
     expect(combine).toBeDefined();
   });
 
-  test('handles 0 as an input', () => {
+  test('has all possible combination', () => {
     expect(combine('abc')).toEqual(
       expect.arrayContaining(['a', 'ab', 'abc', 'ac', 'b', 'bc', 'c']),
     );
