@@ -29,9 +29,9 @@ Engineers*medium.com](https://medium.com/siliconwat/data-structures-in-javascrip
 
 ## Primer
 
-Applied to code, an algorithm is just a function that transforms a certain *input **data structure** into a certain
-**output** data structure*. The **logic** *inside* decides the transformation. First and foremost, the inputs and
-outputs should *clearly* be defined, ideally, as **unit tests**. This requires fully understanding the problem at hand,
+Applied to code, an algorithm is just a function that transforms a certain _input **data structure** into a certain
+**output** data structure_. The **logic** _inside_ decides the transformation. First and foremost, the inputs and
+outputs should _clearly_ be defined, ideally, as **unit tests**. This requires fully understanding the problem at hand,
 which is not to be underestimated, because a thorough analysis of the problem can surface the solution naturally,
 without needing to write any code.
 
@@ -141,72 +141,56 @@ class Str {
 
   replace(regex_or_substr, substr_or_function) {}
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Arrays', () => {
   it('Should implement sort', () => {
     const arr = new Arr(1, 4, 3, 2, 5);
-    assert.deepEqual(arr.sort(), [1, 2, 3, 4, 5]);
-    assert.deepEqual(
-      arr.sort((a, b) => b - a),
-      [5, 4, 3, 2, 1],
-    );
-    assert.deepEqual(
-      arr.sort((a, b) => a - b),
-      [1, 2, 3, 4, 5],
-    );
+    expect(arr.sort()).toEqual([1, 2, 3, 4, 5]);
+    expect(arr.sort((a, b) => b - a)).toEqual([5, 4, 3, 2, 1]);
+    expect(arr.sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5]);
 
     const words = new Arr({ word: 'apple' }, { word: 'orange' }, { word: 'banana' });
-    assert.deepEqual(
+    expect(
       words.sort((a, b) => {
         if (a.word < b.word) return -1;
         if (a.word > b.word) return 1;
         return 0;
       }),
-      [{ word: 'apple' }, { word: 'banana' }, { word: 'orange' }],
-    );
+    ).toEqual([{ word: 'apple' }, { word: 'banana' }, { word: 'orange' }]);
   });
 
   it('Should implement reverse', () => {
     const arr = new Arr(1, 2, 3, 4, 5);
-    assert.deepEqual(arr.reverse(), [5, 4, 3, 2, 1]);
+    expect(arr.reverse()).toEqual([5, 4, 3, 2, 1]);
   });
 
   it('Should implement slice', () => {
     const arr = new Arr(1, 2, 3, 4, 5);
-    assert.deepEqual(arr.slice(), [1, 2, 3, 4, 5]);
-    assert.deepEqual(arr.slice(1), [2, 3, 4, 5]);
-    assert.deepEqual(arr.slice(2, 4), [3, 4]);
+    expect(arr.slice()).toEqual([1, 2, 3, 4, 5]);
+    expect(arr.slice(1)).toEqual([2, 3, 4, 5]);
+    expect(arr.slice(2, 4)).toEqual([3, 4]);
   });
 
   it('Should implement splice', () => {
     const arr = new Arr(1, 2, 3, 4, 5);
-    assert.deepEqual(arr.splice(2, 0, 6), []);
-    assert.deepEqual(arr.arr, [1, 2, 6, 3, 4, 5]);
-    assert.deepEqual(arr.splice(3, 1), [3]);
-    assert.deepEqual(arr.arr, [1, 2, 6, 4, 5]);
-    assert.deepEqual(arr.splice(2, 1, 3), [6]);
-    assert.deepEqual(arr.arr, [1, 2, 3, 4, 5]);
-    assert.deepEqual(arr.splice(0, 2, 6, 7, 8), [1, 2]);
-    assert.deepEqual(arr.arr, [6, 7, 8, 3, 4, 5]);
-    assert.deepEqual(arr.splice(arr.arr.length - 3, 2), [3, 4]);
-    assert.deepEqual(arr.arr, [6, 7, 8, 5]);
-    assert.deepEqual(arr.splice(-2, 1), [8]);
-    assert.deepEqual(arr.arr, [6, 7, 5]);
-    assert.deepEqual(arr.splice(1), [7, 5]);
-    assert.deepEqual(arr.arr, [6]);
+    expect(arr.splice(2, 0, 6)).toEqual([]);
+    expect(arr.arr).toEqual([1, 2, 6, 3, 4, 5]);
+    expect(arr.splice(3, 1)).toEqual([3]);
+    expect(arr.arr).toEqual([1, 2, 6, 4, 5]);
+    expect(arr.splice(2, 1, 3)).toEqual([6]);
+    expect(arr.arr).toEqual([1, 2, 3, 4, 5]);
+    expect(arr.splice(0, 2, 6, 7, 8)).toEqual([1, 2]);
+    expect(arr.arr).toEqual([6, 7, 8, 3, 4, 5]);
+    expect(arr.splice(arr.arr.length - 3, 2)).toEqual([3, 4]);
+    expect(arr.arr).toEqual([6, 7, 8, 5]);
+    expect(arr.splice(-2, 1)).toEqual([8]);
+    expect(arr.arr).toEqual([6, 7, 5]);
+    expect(arr.splice(1)).toEqual([7, 5]);
+    expect(arr.arr).toEqual([6]);
   });
 });
-
-xdescribe('Strings', () => {
-  it('Should implement split', () => {});
-
-  it('Should implement replace', () => {});
-});
-
-mocha.run();
 ```
 
 It’s also worthwhile to read the full documentation on MDN about Arrays: [**Array** *The JavaScript Array object is a
@@ -341,129 +325,91 @@ class Obj {
     return accumulator;
   }
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Arrays', () => {
   it('Should implement indexOf', () => {
     const arr = new Obj(['a', 'b', 'c']);
-    assert.equal(arr.indexOf('b'), 1);
-    assert.equal(arr.indexOf('e'), -1);
+    expect(arr.indexOf('b')).toEqual(1);
+    expect(arr.indexOf('e')).toEqual(-1);
   });
 
   it('Should implement lastIndexOf', () => {
     const arr = new Obj(['a', 'b', 'c']);
-    assert.equal(arr.lastIndexOf('a'), 0);
-    assert.equal(arr.lastIndexOf('e'), -1);
+    expect(arr.lastIndexOf('a')).toEqual(0);
+    expect(arr.lastIndexOf('e')).toEqual(-1);
   });
 
   it('Should implement includes', () => {
     const arr = new Obj(['a', 'b', 'c']);
-    assert.equal(arr.includes('c'), true);
-    assert.equal(arr.includes('e'), false);
+    expect(arr.includes('c')).toEqual(true);
+    expect(arr.includes('e')).toEqual(false);
   });
 
   it('Should implement fill', () => {
     const arr = new Obj(['a', 'b', 'c']);
-    assert.deepEqual(arr.fill('e'), ['e', 'e', 'e']);
+    expect(arr.fill('e')).toEqual(['e', 'e', 'e']);
   });
 
   it('Should implement join', () => {
     const arr = new Obj(['a', 'b', 'c']);
-    assert.equal(arr.join(', '), 'a, b, c');
+    expect(arr.join(', ')).toEqual('a, b, c');
   });
 });
 
 describe('Objects', () => {
   it('Should implement findIndex', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.equal(
-      obj.findIndex((value, key) => value === 2),
-      'b',
-    );
-    assert.equal(
-      obj.findIndex((value, key) => value === 3),
-      null,
-    );
+    expect(obj.findIndex((value, key) => value === 2)).toEqual('b');
+    expect(obj.findIndex((value, key) => value === 3)).toEqual(null);
   });
 
   it('Should implement find', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.equal(
-      obj.find((value, key) => value === 2),
-      2,
-    );
-    assert.equal(
-      obj.find((value, key) => value === 3),
-      undefined,
-    );
+    expect(obj.find((value, key) => value === 2)).toEqual(2);
+    expect(obj.find((value, key) => value === 3)).toEqual(undefined);
   });
 
   it('Should implement filter', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.deepEqual(
-      obj.filter((value, key) => value > 0),
-      { a: 1, b: 2 },
-    );
-    assert.deepEqual(
-      obj.filter((value, key) => value > 2),
-      {},
-    );
+    expect(obj.filter((value, key) => value > 0)).toEqual({ a: 1, b: 2 });
+    expect(obj.filter((value, key) => value > 2)).toEqual({});
   });
 
   it('Should implement forEach', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.deepEqual(
-      obj.forEach((value, key) => value * 2),
-      { a: 2, b: 4 },
-    );
+    expect(obj.forEach((value, key) => value * 2)).toEqual({ a: 2, b: 4 });
   });
 
   it('Should implement map', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.deepEqual(
-      obj.map((value, key) => value * 3),
-      { a: 3, b: 6 },
-    );
+    expect(obj.map((value, key) => value * 3)).toEqual({ a: 3, b: 6 });
   });
 
   it('Should implement some', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.equal(
-      obj.some((value, key) => value > 1),
-      true,
-    );
-    assert.equal(
-      obj.some((value, key) => value > 2),
-      false,
-    );
+    expect(obj.some((value, key) => value > 1)).toEqual(true);
+    expect(obj.some((value, key) => value > 2)).toEqual(false);
   });
 
   it('Should implement every', () => {
     const obj = new Obj({ a: 1, b: 2 });
-    assert.equal(
-      obj.every((value, key) => value > 0),
-      true,
-    );
-    assert.equal(
-      obj.every((value, key) => value > 1),
-      false,
-    );
+    expect(obj.every((value, key) => value > 0)).toEqual(true);
+    expect(obj.every((value, key) => value > 1)).toEqual(false);
   });
 
   it('Should implement reduce', () => {
     const obj1 = new Obj({ a: 1, b: 2 });
-    assert.equal(
-      obj1.reduce((sum, value, key) => sum + value, 0),
-      3,
-    );
+    expect(obj1.reduce((sum, value, key) => sum + value, 0)).toEqual(3);
 
     const obj2 = new Obj({ a1: { b1: 1, b2: 2 }, a2: { b3: 3, b4: 4 } });
-    assert.deepEqual(
-      obj2.reduce((accumulator, value, key) => ({ ...accumulator, ...value }), {}),
-      { b1: 1, b2: 2, b3: 3, b4: 4 },
-    );
+    expect(obj2.reduce((accumulator, value, key) => ({ ...accumulator, ...value }), {})).toEqual({
+      b1: 1,
+      b2: 2,
+      b3: 3,
+      b4: 4,
+    });
   });
 
   xit('Should flatten objects', () => {
@@ -473,19 +419,16 @@ describe('Objects', () => {
       }
       return obj;
     };
-    assert.deepEqual(
+    expect(
       flatten(
         new Obj({
           a1: { b1: 1, b2: { c1: 1, c2: 2 } },
           a2: { b3: 3, b4: { c3: 3, c4: 4 } },
         }),
       ),
-      { b1: 1, c1: 1, c2: 2, b3: 3, c3: 3, c4: 4 },
-    );
+    ).toEqual({ b1: 1, c1: 1, c2: 2, b3: 3, c3: 3, c4: 4 });
   });
 });
-
-mocha.run();
 ```
 
 ### Recursions
@@ -529,18 +472,17 @@ const factorialize = number => {
   }
   return product;
 };
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Factorial', () => {
   it('Should implement factorial', () => {
-    assert.equal(factorial(0), 1);
-    assert.equal(factorial(1), 1);
-    assert.equal(factorial(2), 2);
-    assert.equal(factorial(3), 6);
-    assert.equal(factorial(4), 24);
-    assert.equal(factorial(5), factorialize(5));
+    expect(factorial(0)).toEqual(1);
+    expect(factorial(1)).toEqual(1);
+    expect(factorial(2)).toEqual(2);
+    expect(factorial(3)).toEqual(6);
+    expect(factorial(4)).toEqual(24);
+    expect(factorial(5)).toEqual(factorialize(5));
   });
 });
 ```
@@ -560,7 +502,7 @@ Given a string of characters as _input_, write a function that returns it with t
 ```javascript
 describe('String Reversal', () => {
   it('Should reverse string', () => {
-    assert.equal(reverse('Hello World!'), '!dlroW olleH');
+    expect(reverse('Hello World!')).toEqual('!dlroW olleH');
   });
 });
 ```
@@ -595,19 +537,6 @@ const _reverse = string => {
 };
 
 const __reverse = string => string.split('').reduce((result, character) => character + result);
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('String Reversal', () => {
-  it('Should reverse string', () => {
-    assert.equal(reverse('Hello World!'), '!dlroW olleH');
-    assert.equal(_reverse('Hello World!'), '!dlroW olleH');
-    assert.equal(__reverse('Hello World!'), '!dlroW olleH');
-  });
-});
-
-mocha.run();
 ```
 
 ### 2. Palindrome
@@ -617,11 +546,11 @@ A _palindrome_ is a word or phrase that reads the same* backward as forward*. Wr
 ```javascript
 describe('Palindrome', () => {
   it('Should return true', () => {
-    assert.equal(isPalindrome('Cigar? Toss it in a can. It is so tragic'), true);
+    expect(isPalindrome('Cigar? Toss it in a can. It is so tragic')).toEqual(true);
   });
 
   it('Should return false', () => {
-    assert.equal(isPalindrome('sit ad est love'), false);
+    expect(isPalindrome('sit ad est love')).toEqual(false);
   });
 });
 ```
@@ -667,23 +596,6 @@ const __isPalindrome = string => {
       .join('')
   );
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Palindrome', () => {
-  it('Should return true', () => {
-    assert.equal(isPalindrome('Cigar? Toss it in a can. It is so tragic'), true);
-    assert.equal(__isPalindrome('Cigar? Toss it in a can. It is so tragic'), true);
-  });
-
-  it('Should return false', () => {
-    assert.equal(isPalindrome('sit ad est love'), false);
-    assert.equal(_isPalindrome('sit ad est love'), false);
-  });
-});
-
-mocha.run();
 ```
 
 ### 3. Integer Reversal
@@ -693,8 +605,8 @@ Given an integer, _reverse_ the order of the digits.
 ```javascript
 describe('Integer Reversal', () => {
   it('Should reverse integer', () => {
-    assert.equal(reverse(1234), 4321);
-    assert.equal(reverse(-1200), -21);
+    expect(reverse(1234)).toEqual(4321);
+    expect(reverse(-1200)).toEqual(-21);
   });
 });
 ```
@@ -720,18 +632,6 @@ const reverse = integer =>
       .reverse()
       .join(''),
   ) * Math.sign(integer);
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Integer Reversal', () => {
-  it('Should reverse integer', () => {
-    assert.equal(reverse(1234), 4321);
-    assert.equal(reverse(-1200), -21);
-  });
-});
-
-mocha.run();
 ```
 
 ### 4. Fizz Buzz
@@ -742,22 +642,24 @@ print out “Fizz”; when it’s divisible by 3, print out “Buzz”; when it�
 
 ```javascript
 describe('Fizz Buzz', () => {
+  let output;
+
   beforeEach(() => (output = fizzBuzz(30)));
 
   it('Should output number', () => {
-    assert.equal(output[0], 1);
+    expect(output[0]).toEqual(1);
   });
 
   it('Should output Fizz', () => {
-    assert.equal(output[1], 'Fizz');
+    expect(output[1]).toEqual('Fizz');
   });
 
   it('Should output Buzz', () => {
-    assert.equal(output[2], 'Buzz');
+    expect(output[2]).toEqual('Buzz');
   });
 
   it('Should output Fizz Buzz', () => {
-    assert.equal(output[5], 'Fizz Buzz');
+    expect(output[5]).toEqual('Fizz Buzz');
   });
 });
 ```
@@ -785,32 +687,6 @@ const fizzBuzz = number => {
   }
   return output;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-let output;
-
-describe('Fizz Buzz', () => {
-  beforeEach(() => (output = fizzBuzz(30)));
-
-  it('Should output number', () => {
-    assert.equal(output[0], 1);
-  });
-
-  it('Should output Fizz', () => {
-    assert.equal(output[1], 'Fizz');
-  });
-
-  it('Should output Buzz', () => {
-    assert.equal(output[2], 'Buzz');
-  });
-
-  it('Should output Fizz Buzz', () => {
-    assert.equal(output[5], 'Fizz Buzz');
-  });
-});
-
-mocha.run();
 ```
 
 ### 5. Max Character
@@ -820,7 +696,7 @@ Given a string of characters, return the character that _appears the most often_
 ```javascript
 describe('Max Character', () => {
   it('Should return max character', () => {
-    assert.equal(max('Hello World!'), 'l');
+    expect(max('Hello World!')).toEqual('l');
   });
 });
 ```
@@ -829,7 +705,7 @@ describe('Max Character', () => {
 
 The trick is to create a table that tallies the appearance of each character as we loop through the string. This table
 can be created using an object literal where the characters are _keys_ and the counters are _values_. Then, we can
-iterate through the table to find the character that has the largest counter by keeping *temporary *variables* for
+iterate through the table to find the character that has the largest counter by keeping *temporary *variables\* for
 its key and value.
 
 Though we use two separate loops that iterate through two different inputs (_character string_ and _character map_), the
@@ -858,17 +734,6 @@ const max = string => {
 
   return maxCharacter;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Max Character', () => {
-  it('Should return max character', () => {
-    assert.equal(max('Hello World!'), 'l');
-  });
-});
-
-mocha.run();
 ```
 
 ### 6. Anagrams
@@ -878,9 +743,9 @@ Anagrams are words or phrases that contain the _same number of characters_. Crea
 ```javascript
 describe('Anagrams', () => {
   it('Should implement anagrams', () => {
-    assert.equal(anagrams('hello world', 'world hello'), true);
-    assert.equal(anagrams('hellow world', 'hello there'), false);
-    assert.equal(anagrams('hellow world', 'hello there!'), false);
+    expect(anagrams('hello world', 'world hello')).toEqual(true);
+    expect(anagrams('hellow world', 'hello there')).toEqual(false);
+    expect(anagrams('hellow world', 'hello there!')).toEqual(false);
   });
 });
 ```
@@ -927,23 +792,8 @@ const _sort = string =>
     .split('')
     .sort()
     .join('');
+
 const _anagrams = (stringA, stringB) => _sort(stringA) === _sort(stringB);
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Anagrams', () => {
-  it('Should implement anagrams', () => {
-    assert.equal(anagrams('hello world', 'world hello'), true);
-    assert.equal(anagrams('hellow world', 'hello there'), false);
-    assert.equal(anagrams('hellow world', 'hello there!'), false);
-
-    assert.equal(_anagrams('hello world', 'world hello'), true);
-    assert.equal(_anagrams('hellow world', 'hello there'), false);
-  });
-});
-
-mocha.run();
 ```
 
 ### 7. Vowels
@@ -953,7 +803,7 @@ Given a string of words or phrases, _count_ the number of vowels.
 ```javascript
 describe('Vowels', () => {
   it('Should count vowels', () => {
-    assert.equal(vowels('hello world'), 3);
+    expect(vowels('hello world')).toEqual(3);
   });
 });
 ```
@@ -983,18 +833,6 @@ const _vowels = string => {
   matches = string.match(/[aeiou]/gi);
   return matches ? matches.length : 0;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Vowels', () => {
-  it('Should count vowels', () => {
-    assert.equal(vowels('hello world'), 3);
-    assert.equal(_vowels('hello world'), 3);
-  });
-});
-
-mocha.run();
 ```
 
 ### 8. Array Chunking
@@ -1004,12 +842,12 @@ Given an array and a size, split the array _items_ into a list of _arrays_ of th
 ```javascript
 describe('Array Chunking', () => {
   it('Should implement array chunking', () => {
-    assert.deepEqual(chunk([1, 2, 3, 4], 2), [
+    expect(chunk([1, 2, 3, 4], 2)).toEqual([
       [1, 2],
       [3, 4],
     ]);
-    assert.deepEqual(chunk([1, 2, 3, 4], 3), [[1, 2, 3], [4]]);
-    assert.deepEqual(chunk([1, 2, 3, 4], 5), [[1, 2, 3, 4]]);
+    expect(chunk([1, 2, 3, 4], 3)).toEqual([[1, 2, 3], [4]]);
+    expect(chunk([1, 2, 3, 4], 5)).toEqual([[1, 2, 3, 4]]);
   });
 });
 ```
@@ -1059,36 +897,6 @@ const __chunk = (array, size) => {
 
   return chunks;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Array Chunking', () => {
-  it('Should implement array chunking', () => {
-    assert.deepEqual(chunk([1, 2, 3, 4], 2), [
-      [1, 2],
-      [3, 4],
-    ]);
-    assert.deepEqual(chunk([1, 2, 3, 4], 3), [[1, 2, 3], [4]]);
-    assert.deepEqual(chunk([1, 2, 3, 4], 5), [[1, 2, 3, 4]]);
-
-    assert.deepEqual(_chunk([1, 2, 3, 4], 2), [
-      [1, 2],
-      [3, 4],
-    ]);
-    assert.deepEqual(_chunk([1, 2, 3, 4], 3), [[1, 2, 3], [4]]);
-    assert.deepEqual(_chunk([1, 2, 3, 4], 5), [[1, 2, 3, 4]]);
-
-    assert.deepEqual(__chunk([1, 2, 3, 4], 2), [
-      [1, 2],
-      [3, 4],
-    ]);
-    assert.deepEqual(__chunk([1, 2, 3, 4], 3), [[1, 2, 3], [4]]);
-    assert.deepEqual(__chunk([1, 2, 3, 4], 5), [[1, 2, 3, 4]]);
-  });
-});
-
-mocha.run();
 ```
 
 ### 9. Reverse Array
@@ -1214,7 +1022,7 @@ Given a phrase, _capitalize_ every word.
 ```javascript
 describe('Capitalization', () => {
   it('Should capitalize phrase', () => {
-    assert.equal(capitalize('hello world'), 'Hello World');
+    expect(capitalize('hello world')).toEqual('Hello World');
   });
 });
 ```
@@ -1249,18 +1057,6 @@ const _capitalize = phrase => {
 
   return title;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Capitalization', () => {
-  it('Should capitalize phrase', () => {
-    assert.equal(capitalize('hello world'), 'Hello World');
-    assert.equal(_capitalize('hello world'), 'Hello World');
-  });
-});
-
-mocha.run();
 ```
 
 ### 12. Caesar Cipher
@@ -1271,11 +1067,11 @@ shifting should wrap around back to the beginning or end of the alphabet.
 ```javascript
 describe('Caesar Cipher', () => {
   it('Should shift to the right', () => {
-    assert.equal(caesarCipher('I love JavaScript!', 100), 'E hkra FwrwOynelp!');
+    expect(caesarCipher('I love JavaScript!', 100)).toEqual('E hkra FwrwOynelp!');
   });
 
   it('Should shift to the left', () => {
-    assert.equal(caesarCipher('I love JavaScript!', -100), 'M pszi NezeWgvmtx!');
+    expect(caesarCipher('I love JavaScript!', -100)).toEqual('M pszi NezeWgvmtx!');
   });
 });
 ```
@@ -1332,23 +1128,6 @@ function _caesarCipher(str, n) {
   }
   return result.join('');
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Caesar Cipher', () => {
-  it('Should shift to the right', () => {
-    assert.equal(caesarCipher('I love JavaScript!', 100), 'E hkra FwrwOynelp!');
-    assert.equal(_caesarCipher('I love JavaScript!', 100), 'E hkra FwrwOynelp!');
-  });
-
-  it('Should shift to the left', () => {
-    assert.equal(caesarCipher('I love JavaScript!', -100), 'M pszi NezeWgvmtx!');
-    // assert.equal(_caesarCipher("I love JavaScript!", -100), "M pszi NezeWgvmtx!");
-  });
-});
-
-mocha.run();
 ```
 
 ### 13. Ransom Note
@@ -1362,19 +1141,19 @@ const magazine =
 
 describe('Ransom Note', () => {
   it('Should return true', () => {
-    assert.equal(ransomNote('sit ad est sint', magazine), true);
+    expect(ransomNote('sit ad est sint', magazine)).toEqual(true);
   });
 
   it('Should return false', () => {
-    assert.equal(ransomNote('sit ad est love', magazine), false);
+    expect(ransomNote('sit ad est love', magazine)).toEqual(false);
   });
 
   it('Should return true', () => {
-    assert.equal(ransomNote('sit ad est sint in in', magazine), true);
+    expect(ransomNote('sit ad est sint in in', magazine)).toEqual(true);
   });
 
   it('Should return false', () => {
-    assert.equal(ransomNote('sit ad est sint in in in in', magazine), false);
+    expect(ransomNote('sit ad est sint in in in in', magazine)).toEqual(false);
   });
 });
 ```
@@ -1384,7 +1163,7 @@ describe('Ransom Note', () => {
 An obvious solution is to split the magazine words and ransom words into _arrays_ of individual words, and then check
 every ransom word against every magazine word. However, this approach scales in _quadratic_ time, or O(n * m) which is
 not performant. If we create a table of magazine words first, and then check each ransom word against this table, we can
-achieve *linear* time. This is because table lookup in *map objects* occurs in *constant* time. However, we will need
+achieve *linear* time. This is because table lookup in *map objects* occurs in *constant\* time. However, we will need
 to sacrifice space complexity in order to hold the map object in memory.
 
 In code, this means we create a count of every magazine word, and then check if this “hash table” contains the right
@@ -1414,31 +1193,6 @@ const ransomNote = (note, magazine) => {
 
   return possible;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-const magazine =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
-
-describe('Ransom Note', () => {
-  it('Should return true', () => {
-    assert.equal(ransomNote('sit ad est sint', magazine), true);
-  });
-
-  it('Should return false', () => {
-    assert.equal(ransomNote('sit ad est love', magazine), false);
-  });
-
-  it('Should return true', () => {
-    assert.equal(ransomNote('sit ad est sint in in', magazine), true);
-  });
-
-  it('Should return false', () => {
-    assert.equal(ransomNote('sit ad est sint in in in in', magazine), false);
-  });
-});
-
-mocha.run();
 ```
 
 ### 14. Mean, Median, and Mode
@@ -1451,22 +1205,22 @@ const stat2 = new Stats([1, 1, 2, 2, 3, 3, 4, 4]);
 
 describe('Mean', () => {
   it('Should implement mean', () => {
-    assert.equal(Stats.round(stat1.mean()), 3.43);
-    assert.equal(Stats.round(stat2.mean()), 2.5);
+    expect(Stats.round(stat1.mean())).toEqual(3.43);
+    expect(Stats.round(stat2.mean())).toEqual(2.5);
   });
 });
 
 describe('Median', () => {
   it('Should implement median', () => {
-    assert.equal(stat1.median(), 4);
-    assert.equal(stat2.median(), 2.5);
+    expect(stat1.median()).toEqual(4);
+    expect(stat2.median()).toEqual(2.5);
   });
 });
 
 describe('Mode', () => {
   it('Should implement mode', () => {
-    assert.deepEqual(stat1.mode(), [4, 5]);
-    assert.deepEqual(stat2.mode(), []);
+    expect(stat1.mode()).toEqual([4, 5]);
+    expect(stat2.mode()).toEqual([]);
   });
 });
 ```
@@ -1533,34 +1287,6 @@ class Stats {
     return modes;
   }
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-const stat1 = new Stats([1, 2, 3, 4, 4, 5, 5]);
-const stat2 = new Stats([1, 1, 2, 2, 3, 3, 4, 4]);
-
-describe('Mean', () => {
-  it('Should implement mean', () => {
-    assert.equal(Stats.round(stat1.mean()), 3.43);
-    assert.equal(Stats.round(stat2.mean()), 2.5);
-  });
-});
-
-describe('Median', () => {
-  it('Should implement median', () => {
-    assert.equal(stat1.median(), 4);
-    assert.equal(stat2.median(), 2.5);
-  });
-});
-
-describe('Mode', () => {
-  it('Should implement mode', () => {
-    assert.deepEqual(stat1.mode(), [4, 5]);
-    assert.deepEqual(stat2.mode(), []);
-  });
-});
-
-mocha.run();
 ```
 
 ### 15. Two Sum
@@ -1570,7 +1296,7 @@ Given an array of numbers, return _all pairs_ that add up to a given sum. The nu
 ```javascript
 describe('Two Sum', () => {
   it('Should implement two sum', () => {
-    assert.deepEqual(twoSum([1, 2, 2, 3, 4], 4), [
+    expect(twoSum([1, 2, 2, 3, 4], 4)).toEqual([
       [2, 2],
       [3, 1],
     ]);
@@ -1603,20 +1329,6 @@ const twoSum = (array, sum) => {
 
   return pairs;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Two Sum', () => {
-  it('Should implement two sum', () => {
-    assert.deepEqual(twoSum([1, 2, 2, 3, 4], 4), [
-      [2, 2],
-      [3, 1],
-    ]);
-  });
-});
-
-mocha.run();
 ```
 
 ### 16. Max Profit
@@ -1627,10 +1339,10 @@ profit_.
 ```javascript
 describe('Max Profit', () => {
   it('Should return minimum buy price and maximum sell price', () => {
-    assert.deepEqual(maxProfit([1, 2, 3, 4, 5]), [1, 5]);
-    assert.deepEqual(maxProfit([2, 1, 5, 3, 4]), [1, 5]);
-    assert.deepEqual(maxProfit([2, 10, 1, 3]), [2, 10]);
-    assert.deepEqual(maxProfit([2, 1, 2, 11]), [1, 11]);
+    expect(maxProfit([1, 2, 3, 4, 5])).toEqual([1, 5]);
+    expect(maxProfit([2, 1, 5, 3, 4])).toEqual([1, 5]);
+    expect(maxProfit([2, 10, 1, 3])).toEqual([2, 10]);
+    expect(maxProfit([2, 1, 2, 11])).toEqual([1, 11]);
   });
 });
 ```
@@ -1669,34 +1381,19 @@ function maxProfit(prices) {
 
   return [minBuyPrice, maxSellPrice];
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Max Profit', () => {
-  it('Should return minimum buy price and maximum sell price', () => {
-    assert.deepEqual(maxProfit([1, 2, 3, 4, 5]), [1, 5]);
-    assert.deepEqual(maxProfit([2, 1, 5, 3, 4]), [1, 5]);
-    assert.deepEqual(maxProfit([2, 10, 1, 3]), [2, 10]);
-    assert.deepEqual(maxProfit([2, 1, 2, 11]), [1, 11]);
-    assert.deepEqual(maxProfit([2, 3, 1, 5, 4]), [1, 5]);
-    assert.deepEqual(maxProfit([1, 2, 5, 3, 4]), [1, 5]);
-    assert.deepEqual(maxProfit([2, 10, 5, 1, 3]), [2, 10]);
-  });
-});
-
-mocha.run();
 ```
 
 ### 17. Sieve of Eratosthenes
 
 For a given number, find all the _prime numbers_ from zero to that number.
 
-    describe("Sieve of Eratosthenes", () => {
-     it("**Should return all prime numbers**", () => {
-      assert.deepEqual(primes(10), [2, 3, 5, 7]);
-     });
-    });
+```javascript
+describe('Sieve of Eratosthenes', () => {
+  it('**Should return all prime numbers**', () => {
+    expect(primes(10)).toEqual([2, 3, 5, 7]);
+  });
+});
+```
 
 **Analysis**:
 
@@ -1729,17 +1426,6 @@ const primes = number => {
 
   return numbers.reduce((primes, isPrime, prime) => (isPrime ? primes.concat(prime) : primes), []);
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Sieve of Eratosthenes', () => {
-  it('Should return all prime numbers', () => {
-    assert.deepEqual(primes(10), [2, 3, 5, 7]);
-  });
-});
-
-mocha.run();
 ```
 
 ### 18. Fibonacci
@@ -1749,11 +1435,11 @@ Implement a function that returns the _fibonacci number_ at a given index.
 ```javascript
 describe('Fibonacci', () => {
   it('Should implement fibonacci', () => {
-    assert.equal(fibonacci(1), 1);
-    assert.equal(fibonacci(2), 1);
-    assert.equal(fibonacci(3), 2);
-    assert.equal(fibonacci(6), 8);
-    assert.equal(fibonacci(10), 55);
+    expect(fibonacci(1)).toEqual(1);
+    expect(fibonacci(2)).toEqual(1);
+    expect(fibonacci(3)).toEqual(2);
+    expect(fibonacci(6)).toEqual(8);
+    expect(fibonacci(10)).toEqual(55);
   });
 });
 ```
@@ -1772,9 +1458,7 @@ series up to the given index, it achieves *linear *time and space.
 **Code**:
 
 ```javascript
-const fibonacci = element =>
-  // if (element < 0) throw new Error("Index cannot be negative");
-  element < 3 ? 1 : fibonacci(element - 1) + fibonacci(element - 2);
+const fibonacci = n => (n < 3 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));
 
 const _fibonacci = element => {
   const series = [1, 1];
@@ -1787,25 +1471,6 @@ const _fibonacci = element => {
 
   return series[element - 1];
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Fibonacci', () => {
-  it('Should implement fibonacci', () => {
-    assert.equal(fibonacci(1), 1);
-    assert.equal(fibonacci(2), 1);
-    assert.equal(fibonacci(3), 2);
-    assert.equal(fibonacci(6), 8);
-    assert.equal(fibonacci(10), 55);
-    assert.equal(_fibonacci(1), 1);
-    assert.equal(_fibonacci(2), 1);
-    assert.equal(_fibonacci(3), 2);
-    assert.equal(_fibonacci(10), 55);
-  });
-});
-
-mocha.run();
 ```
 
 ### 19. Memoized Fibonacci
@@ -1815,8 +1480,8 @@ Implement a _performant_ recursive function for the fibonacci series.
 ```javascript
 describe('Memoized Fibonacci', () => {
   it('Should implement memoized fibonacci', () => {
-    assert.equal(fibonacci(6), 8);
-    assert.equal(fibonacci(10), 55);
+    expect(fibonacci(6)).toEqual(8);
+    expect(fibonacci(10)).toEqual(55);
   });
 });
 ```
@@ -1833,15 +1498,6 @@ utility function that decorates any function with memoization.
 **Code**:
 
 ```javascript
-const fibonacci = (element, cache = []) => {
-  if (cache[element]) return cache[element];
-  else {
-    if (element < 3) return 1;
-    else cache[element] = fibonacci(element - 1, cache) + fibonacci(element - 2, cache);
-  }
-  return cache[element];
-};
-
 const _memoize = fn => {
   const cache = {};
   return (...args) => {
@@ -1853,22 +1509,17 @@ const _memoize = fn => {
   };
 };
 
-const _fibonacci = element =>
-  element < 2 ? element : _memoized_fibonacci(element - 1) + _memoized_fibonacci(element - 2);
+const fibonacci = (n, cache = []) => {
+  if (cache[n]) return cache[n];
+  else {
+    if (n < 3) return 1;
+    else cache[n] = fibonacci(n - 1, cache) + fibonacci(n - 2, cache);
+  }
+  return cache[n];
+};
+
+const _fibonacci = n => (n < 2 ? n : _memoized_fibonacci(n - 1) + _memoized_fibonacci(n - 2));
 const _memoized_fibonacci = _memoize(_fibonacci);
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Memoized Fibonacci', () => {
-  it('Should implement memoized fibonacci', () => {
-    assert.equal(fibonacci(6), 8);
-    assert.equal(fibonacci(10), 55);
-    assert.equal(_memoized_fibonacci(10), 55);
-  });
-});
-
-mocha.run();
 ```
 
 ### 20. Staircase
@@ -1878,8 +1529,8 @@ For a given number of steps, print out a “staircase” using _hashes_ and _spa
 ```javascript
 describe('Steps', () => {
   it('Should print steps', () => {
-    assert.equal(steps(3), '#  \n## \n###\n');
-    assert.equal(_steps(3), '#  \n## \n###\n');
+    expect(steps(3)).toEqual('#  \n## \n###\n');
+    expect(_steps(3)).toEqual('#  \n## \n###\n');
   });
 });
 ```
@@ -1917,18 +1568,6 @@ const _steps = (number, row = 0, stair = '', stairs = '') => {
 
   return _steps(number, row, stair + (stair.length <= row ? '#' : ' '), stairs);
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Staircase', () => {
-  it('Should print steps', () => {
-    assert.equal(steps(3), '#  \n## \n###\n');
-    assert.equal(_steps(3), '#  \n## \n###\n');
-  });
-});
-
-mocha.run();
 ```
 
 ### 21. Pyramid
@@ -1938,8 +1577,8 @@ For a given number of levels, print out a “pyramid” using _hashes_ and _spac
 ```javascript
 describe('Pyramid', () => {
   it('Should print pyramid', () => {
-    assert.equal(pyramid(3), '  #  \n ### \n#####\n');
-    assert.equal(_pyramid(3), '  #  \n ### \n#####\n');
+    expect(pyramid(3)).toEqual('  #  \n ### \n#####\n');
+    expect(_pyramid(3)).toEqual('  #  \n ### \n#####\n');
   });
 });
 ```
@@ -1984,18 +1623,6 @@ const _pyramid = (number, row = 0, level = '', levels = '') => {
     levels,
   );
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Pyramid', () => {
-  it('Should print pyramid', () => {
-    assert.equal(pyramid(3), '  #  \n ### \n#####\n');
-    assert.equal(_pyramid(3), '  #  \n ### \n#####\n');
-  });
-});
-
-mocha.run();
 ```
 
 ### 22. Matrix Spiral
@@ -2005,7 +1632,7 @@ Create a _square matrix_ of a given size in which elements are in _spiral order_
 ```javascript
 describe('Matrix Spiral', () => {
   it('Should implement matrix spiral', () => {
-    assert.deepEqual(spiral(3), [
+    expect(spiral(3)).toEqual([
       [1, 2, 3],
       [8, 9, 4],
       [7, 6, 5],
@@ -2069,21 +1696,6 @@ const spiral = number => {
 
   return matrix;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Matrix Spiral', () => {
-  it('Should implement matrix spiral', () => {
-    assert.deepEqual(spiral(3), [
-      [1, 2, 3],
-      [8, 9, 4],
-      [7, 6, 5],
-    ]);
-  });
-});
-
-mocha.run();
 ```
 
 ## Data Structure Algorithms
@@ -2111,21 +1723,21 @@ describe('Weaving with Queues', () => {
     two.enqueue('three');
 
     const result = weave(one, two);
-    assert.equal(result.dequeue(), 1);
-    assert.equal(result.dequeue(), 'one');
-    assert.equal(result.dequeue(), 2);
-    assert.equal(result.dequeue(), 'two');
-    assert.equal(result.dequeue(), 3);
-    assert.equal(result.dequeue(), 'three');
-    assert.equal(result.dequeue(), undefined);
+    expect(result.dequeue()).toEqual(1);
+    expect(result.dequeue()).toEqual('one');
+    expect(result.dequeue()).toEqual(2);
+    expect(result.dequeue()).toEqual('two');
+    expect(result.dequeue()).toEqual(3);
+    expect(result.dequeue()).toEqual('three');
+    expect(result.dequeue()).toEqual(undefined);
   });
 });
 ```
 
 **Analysis**:
 
-At the minimum, the Queue* *class needs to have an enqueue, dequeue, and peek methods. Then, we can use the while loop
-to *peek* for existence, and if truthy, we can *dequeue* it out and then *enqueue* it to our new* *queue.
+At the minimum, the Queue\* *class needs to have an enqueue, dequeue, and peek methods. Then, we can use the while loop
+to *peek* for existence, and if truthy, we can *dequeue* it out and then *enqueue* it to our new* \*queue.
 
 This algorithm has O(n + m) for both time and space because we need to iterate through two different collections and
 store them.
@@ -2161,34 +1773,6 @@ const weave = (queueOne, queueTwo) => {
 
   return queueCombined;
 };
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Weaving with Queues', () => {
-  it('Should weave two queues together', () => {
-    const one = new Queue();
-    one.enqueue(1);
-    one.enqueue(2);
-    one.enqueue(3);
-
-    const two = new Queue();
-    two.enqueue('one');
-    two.enqueue('two');
-    two.enqueue('three');
-
-    const result = weave(one, two);
-    assert.equal(result.dequeue(), 1);
-    assert.equal(result.dequeue(), 'one');
-    assert.equal(result.dequeue(), 2);
-    assert.equal(result.dequeue(), 'two');
-    assert.equal(result.dequeue(), 3);
-    assert.equal(result.dequeue(), 'three');
-    assert.equal(result.dequeue(), undefined);
-  });
-});
-
-mocha.run();
 ```
 
 ### Stacks
@@ -2202,11 +1786,11 @@ describe('Queue from Stacks', () => {
     queue.enqueue(1);
     queue.enqueue(2);
     queue.enqueue(3);
-    assert.equal(queue.peek(), 1);
-    assert.equal(queue.dequeue(), 1);
-    assert.equal(queue.dequeue(), 2);
-    assert.equal(queue.dequeue(), 3);
-    assert.equal(queue.dequeue(), undefined);
+    expect(queue.peek()).toEqual(1);
+    expect(queue.dequeue()).toEqual(1);
+    expect(queue.dequeue()).toEqual(2);
+    expect(queue.dequeue()).toEqual(3);
+    expect(queue.dequeue()).toEqual(undefined);
   });
 });
 ```
@@ -2280,25 +1864,6 @@ class Queue {
     return record;
   }
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Queue from Stacks', () => {
-  it('Should implement queue using two stacks', () => {
-    const queue = new Queue();
-    queue.enqueue(1);
-    queue.enqueue(2);
-    queue.enqueue(3);
-    assert.equal(queue.peek(), 1);
-    assert.equal(queue.dequeue(), 1);
-    assert.equal(queue.dequeue(), 2);
-    assert.equal(queue.dequeue(), 3);
-    assert.equal(queue.dequeue(), undefined);
-  });
-});
-
-mocha.run();
 ```
 
 ### Linked Lists
@@ -2310,71 +1875,71 @@ describe('Linked List', () => {
   it('Should implement insertHead', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
-    assert.equal(chain.head.data, 1);
+    expect(chain.head.data).toEqual(1);
   });
 
   it('Should implement size', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
-    assert.equal(chain.size(), 1);
+    expect(chain.size()).toEqual(1);
   });
 
   it('Should implement getHead', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
-    assert.equal(chain.getHead().data, 1);
+    expect(chain.getHead().data).toEqual(1);
   });
 
   it('Should implement getTail', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
-    assert.equal(chain.getTail().data, 1);
+    expect(chain.getTail().data).toEqual(1);
   });
 
   it('Should implement clear', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
     chain.clear();
-    assert.equal(chain.size(), 0);
+    expect(chain.size()).toEqual(0);
   });
 
   it('Should implement removeHead', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
     chain.removeHead();
-    assert.equal(chain.size(), 0);
+    expect(chain.size()).toEqual(0);
   });
 
   it('Should implement removeTail', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
     chain.removeTail();
-    assert.equal(chain.size(), 0);
+    expect(chain.size()).toEqual(0);
   });
 
   it('Should implement insertTail', () => {
     const chain = new LinkedList();
     chain.insertTail(1);
-    assert.equal(chain.getTail().data, 1);
+    expect(chain.getTail().data).toEqual(1);
   });
 
   it('Should implement getAt', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
-    assert.equal(chain.getAt(0).data, 1);
+    expect(chain.getAt(0).data).toEqual(1);
   });
 
   it('Should implement removeAt', () => {
     const chain = new LinkedList();
     chain.insertHead(1);
     chain.removeAt(0);
-    assert.equal(chain.size(), 0);
+    expect(chain.size()).toEqual(0);
   });
 
   it('Should implement insertAt', () => {
     const chain = new LinkedList();
     chain.insertAt(0, 1);
-    assert.equal(chain.getAt(0).data, 1);
+    expect(chain.getAt(0).data).toEqual(1);
   });
 
   it('Should implement forEach', () => {
@@ -2382,7 +1947,7 @@ describe('Linked List', () => {
     chain.insertHead(1);
     chain.insertHead(2);
     chain.forEach((node, index) => (node.data = node.data + index));
-    assert.equal(chain.getTail().data, 2);
+    expect(chain.getTail().data).toEqual(2);
   });
 
   it('Should implement iterator', () => {
@@ -2390,7 +1955,7 @@ describe('Linked List', () => {
     chain.insertHead(1);
     chain.insertHead(2);
     for (let node of chain) node.data = node.data + 1;
-    assert.equal(chain.getTail().data, 2);
+    expect(chain.getTail().data).toEqual(2);
   });
 });
 ```
@@ -2530,99 +2095,6 @@ class LinkedList {
     }
   }
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Linked List', () => {
-  it('Should implement insertHead', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    assert.equal(chain.head.data, 1);
-  });
-
-  it('Should implement size', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    assert.equal(chain.size(), 1);
-  });
-
-  it('Should implement getHead', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    assert.equal(chain.getHead().data, 1);
-  });
-
-  it('Should implement getTail', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    assert.equal(chain.getTail().data, 1);
-  });
-
-  it('Should implement clear', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.clear();
-    assert.equal(chain.size(), 0);
-  });
-
-  it('Should implement removeHead', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.removeHead();
-    assert.equal(chain.size(), 0);
-  });
-
-  it('Should implement removeTail', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.removeTail();
-    assert.equal(chain.size(), 0);
-  });
-
-  it('Should implement insertTail', () => {
-    const chain = new LinkedList();
-    chain.insertTail(1);
-    assert.equal(chain.getTail().data, 1);
-  });
-
-  it('Should implement getAt', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    assert.equal(chain.getAt(0).data, 1);
-  });
-
-  it('Should implement removeAt', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.removeAt(0);
-    assert.equal(chain.size(), 0);
-  });
-
-  it('Should implement insertAt', () => {
-    const chain = new LinkedList();
-    chain.insertAt(0, 1);
-    assert.equal(chain.getAt(0).data, 1);
-  });
-
-  it('Should implement forEach', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.insertHead(2);
-    chain.forEach((node, index) => (node.data = node.data + index));
-    assert.equal(chain.getTail().data, 2);
-  });
-
-  it('Should implement iterator', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.insertHead(2);
-    for (let node of chain) node.data = node.data + 1;
-    assert.equal(chain.getTail().data, 2);
-  });
-});
-
-mocha.run();
 ```
 
 **Challenge #1: Midpoint**
@@ -2638,7 +2110,7 @@ describe('Midpoint of Linked List', () => {
     chain.insertHead(3);
     chain.insertHead(4);
     chain.insertHead(5);
-    assert.equal(midpoint(chain).data, 3);
+    expect(midpoint(chain).data).toEqual(3);
   });
 });
 ```
@@ -2681,23 +2153,6 @@ function midpoint(list) {
 
   return moveByOne;
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Midpoint of Linked List', () => {
-  it('Should return midpoint of linked list', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.insertHead(2);
-    chain.insertHead(3);
-    chain.insertHead(4);
-    chain.insertHead(5);
-    assert.equal(midpoint(chain).data, 3);
-  });
-});
-
-mocha.run();
 ```
 
 **Challenge #2: Circular**
@@ -2712,7 +2167,7 @@ describe('Circular Linked List', () => {
     chain.insertHead(2);
     chain.insertHead(3);
     chain.head.next.next.next = chain.head;
-    assert.equal(circular(chain), true);
+    expect(circular(chain)).toEqual(true);
   });
 });
 ```
@@ -2759,22 +2214,6 @@ function circular(list) {
 
   return false;
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Circular Linked List', () => {
-  it('Should check for circular linked list', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.insertHead(2);
-    chain.insertHead(3);
-    chain.head.next.next.next = chain.head;
-    assert.equal(circular(chain), true);
-  });
-});
-
-mocha.run();
 ```
 
 **Challenge #3: From Tail**
@@ -2790,7 +2229,7 @@ describe('From Tail of Linked List', () => {
     chain.insertHead(3);
     chain.insertHead(4);
     chain.insertHead(5);
-    assert.equal(fromTail(chain, 2).data, 3);
+    expect(fromTail(chain, 2).data).toEqual(3);
   });
 });
 ```
@@ -2839,23 +2278,6 @@ function fromTail(list, step) {
 
   return moveByOne;
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('From Tail of Linked List', () => {
-  it('Should step from tail of linked list', () => {
-    const chain = new LinkedList();
-    chain.insertHead(1);
-    chain.insertHead(2);
-    chain.insertHead(3);
-    chain.insertHead(4);
-    chain.insertHead(5);
-    assert.equal(fromTail(chain, 2).data, 3);
-  });
-});
-
-mocha.run();
 ```
 
 ### Trees
@@ -2867,10 +2289,10 @@ describe('Trees', () => {
   it('Should add and remove nodes', () => {
     const root = new Node(1);
     root.add(2);
-    assert.equal(root.data, 1);
-    assert.equal(root.children[0].data, 2);
+    expect(root.data).toEqual(1);
+    expect(root.children[0].data).toEqual(2);
     root.remove(2);
-    assert.equal(root.children.length, 0);
+    expect(root.children.length).toEqual(0);
   });
 
   it('Should traverse by breadth', () => {
@@ -2882,7 +2304,7 @@ describe('Trees', () => {
 
     const numbers = [];
     tree.traverseBF(node => numbers.push(node.data));
-    assert.deepEqual(numbers, [1, 2, 3, 4]);
+    expect(numbers).toEqual([1, 2, 3, 4]);
   });
 
   it('Should traverse by depth', () => {
@@ -2894,7 +2316,7 @@ describe('Trees', () => {
 
     const numbers = [];
     tree.traverseDF(node => numbers.push(node.data));
-    assert.deepEqual(numbers, [1, 2, 4, 3]);
+    expect(numbers).toEqual([1, 2, 4, 3]);
   });
 });
 ```
@@ -2942,46 +2364,6 @@ class Tree {
     }
   }
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Trees', () => {
-  it('Should add and remove nodes', () => {
-    const root = new Node(1);
-    root.add(2);
-    assert.equal(root.data, 1);
-    assert.equal(root.children[0].data, 2);
-    root.remove(2);
-    assert.equal(root.children.length, 0);
-  });
-
-  it('Should traverse by breadth', () => {
-    const tree = new Tree();
-    tree.root = new Node(1);
-    tree.root.add(2);
-    tree.root.add(3);
-    tree.root.children[0].add(4);
-
-    const numbers = [];
-    tree.traverseBF(node => numbers.push(node.data));
-    assert.deepEqual(numbers, [1, 2, 3, 4]);
-  });
-
-  it('Should traverse by depth', () => {
-    const tree = new Tree();
-    tree.root = new Node(1);
-    tree.root.add(2);
-    tree.root.add(3);
-    tree.root.children[0].add(4);
-
-    const numbers = [];
-    tree.traverseDF(node => numbers.push(node.data));
-    assert.deepEqual(numbers, [1, 2, 4, 3]);
-  });
-});
-
-mocha.run();
 ```
 
 **Challenge #1: Tree Widths**
@@ -2996,7 +2378,7 @@ describe('Width of Tree Levels', () => {
     root.add(3);
     root.children[1].add(4);
 
-    assert.deepEqual(treeWidths(root), [1, 2, 1]);
+    expect(treeWidths(root)).toEqual([1, 2, 1]);
   });
 });
 ```
@@ -3043,22 +2425,6 @@ function treeWidths(root) {
 
   return counters;
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Width of Tree Levels', () => {
-  it('Should return width of each tree level', () => {
-    const root = new Node(1);
-    root.add(2);
-    root.add(3);
-    root.children[1].add(4);
-
-    assert.deepEqual(treeWidths(root), [1, 2, 1]);
-  });
-});
-
-mocha.run();
 ```
 
 **Challenge #2: Tree Height**
@@ -3073,7 +2439,7 @@ describe('Height of Tree', () => {
     root.add(3);
     root.children[1].add(4);
 
-    assert.deepEqual(treeHeight(root), 2);
+    expect(treeHeight(root)).toEqual(2);
   });
 });
 ```
@@ -3128,22 +2494,6 @@ function _treeHeight(root) {
 
   return counter;
 }
-
-mocha.setup('bdd');
-const { assert } = chai;
-
-describe('Height of Tree', () => {
-  it('Should return max number of levels', () => {
-    const root = new Node(1);
-    root.add(2);
-    root.add(3);
-    root.children[1].add(4);
-
-    assert.deepEqual(treeHeight(root), 2);
-  });
-});
-
-mocha.run();
 ```
 
 ### Graphs
@@ -3190,20 +2540,17 @@ function _bubbleSort(array) {
 
   return array;
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Bubble Sort', () => {
   it('Should implement bubble sort', () => {
-    assert.deepEqual(bubbleSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(bubbleSort([5, 3, 1, 2, 4]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(_bubbleSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(_bubbleSort([5, 3, 1, 2, 4]), [1, 2, 3, 4, 5]);
+    expect(bubbleSort([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    expect(bubbleSort([5, 3, 1, 2, 4])).toEqual([1, 2, 3, 4, 5]);
+    expect(_bubbleSort([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    expect(_bubbleSort([5, 3, 1, 2, 4])).toEqual([1, 2, 3, 4, 5]);
   });
 });
-
-mocha.run();
 ```
 
 ### Insertion Sort
@@ -3221,18 +2568,15 @@ const insertionSort = array => {
   }
   return array;
 };
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Insertion Sort', () => {
   it('Should implement insertion sort', () => {
-    assert.deepEqual(insertionSort([4, 3, 3, 2, 1]), [1, 2, 3, 3, 4]);
-    assert.deepEqual(insertionSort([4, 3, 1, 2, 3]), [1, 2, 3, 3, 4]);
+    expect(insertionSort([4, 3, 3, 2, 1])).toEqual([1, 2, 3, 3, 4]);
+    expect(insertionSort([4, 3, 1, 2, 3])).toEqual([1, 2, 3, 3, 4]);
   });
 });
-
-mocha.run();
 ```
 
 ### Selection Sort
@@ -3257,17 +2601,14 @@ function selectionSort(array) {
 
   return array;
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Selection Sort', () => {
   it('Should sort an array', () => {
-    assert.deepEqual(selectionSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
+    expect(selectionSort([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
   });
 });
-
-mocha.run();
 ```
 
 ### Quick Sort
@@ -3292,18 +2633,15 @@ const quickSort = array => {
 
   return [...quickSort(left), pivot, ...quickSort(right)];
 };
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Quick Sort', () => {
   it('Should implement quick sort', () => {
-    assert.deepEqual(quickSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(quickSort([5, 3, 1, 2, 4]), [1, 2, 3, 4, 5]);
+    expect(quickSort([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    expect(quickSort([5, 3, 1, 2, 4])).toEqual([1, 2, 3, 4, 5]);
   });
 });
-
-mocha.run();
 ```
 
 ### Merge Sort
@@ -3357,20 +2695,17 @@ function _merge(left, right) {
 
   return [...results, ...left, ...right];
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Merge Sort', () => {
   it('Should implement merge sort', () => {
-    assert.deepEqual(mergeSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(mergeSort([5, 3, 1, 2, 4]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(_mergeSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
-    assert.deepEqual(_mergeSort([5, 3, 1, 2, 4]), [1, 2, 3, 4, 5]);
+    expect(mergeSort([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    expect(mergeSort([5, 3, 1, 2, 4])).toEqual([1, 2, 3, 4, 5]);
+    expect(_mergeSort([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    expect(_mergeSort([5, 3, 1, 2, 4])).toEqual([1, 2, 3, 4, 5]);
   });
 });
-
-mocha.run();
 ```
 
 ### Counting Sort
@@ -3398,18 +2733,15 @@ const countingSort = (array, max) => {
 
   return result;
 };
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Counting Sort', () => {
   it('Should implement counting sort', () => {
-    assert.deepEqual(countingSort([4, 3, 2, 1, 0], 4), [0, 1, 2, 3, 4]);
-    assert.deepEqual(countingSort([4, 3, 1, 2, 3], 4), [1, 2, 3, 3, 4]);
+    expect(countingSort([4, 3, 2, 1, 0], 4)).toEqual([0, 1, 2, 3, 4]);
+    expect(countingSort([4, 3, 1, 2, 3], 4)).toEqual([1, 2, 3, 3, 4]);
   });
 });
-
-mocha.run();
 ```
 
 ### Other Sorting Algorithms
@@ -3477,29 +2809,26 @@ function _binarySearch(nums, target) {
 
   return false;
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Binary Search', () => {
   it('Should implement binary search', () => {
-    assert.equal(binarySearch([1, 2, 3, 4, 5], 0), false);
-    assert.equal(binarySearch([1, 2, 3, 4, 5, 6], 6), true);
+    expect(binarySearch([1, 2, 3, 4, 5], 0)).toEqual(false);
+    expect(binarySearch([1, 2, 3, 4, 5, 6], 6)).toEqual(true);
 
-    assert.equal(_binarySearch([1, 2, 3, 4, 5], 0), false);
-    assert.equal(_binarySearch([1, 2, 3, 4, 5, 6], 6), true);
+    expect(_binarySearch([1, 2, 3, 4, 5], 0)).toEqual(false);
+    expect(_binarySearch([1, 2, 3, 4, 5, 6], 6)).toEqual(true);
   });
 });
-
-mocha.run();
 ```
 
 ### Binary Search Tree
 
-An alternative to sorting a collection is to generate a _Binary Search Tree_ *(BST)* from it. As a BST, searching
+An alternative to sorting a collection is to generate a _Binary Search Tree_ _(BST)_ from it. As a BST, searching
 through it is as efficient as binary search. In a similar way, we can discard the half that we know cannot contain our
 desired value at every iteration. In fact, another way to sort a collection is to do a depth-first traversal across this
-tree *in-order*!
+tree _in-order_!
 
 BST creation happens in _linear_ time and space, but searching through it happens in _logarithmic_ time and _constant_
 space.
@@ -3526,17 +2855,16 @@ class Node {
     return null;
   }
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Binary Search Tree', () => {
   it('Should insert node', () => {
     const root = new Node(2);
     root.insert(1);
     root.insert(3);
     root.insert(0);
-    assert.equal(root.left.left.data, 0);
+    expect(root.left.left.data).toEqual(0);
   });
 
   it('Should implement search', () => {
@@ -3544,12 +2872,10 @@ describe('Binary Search Tree', () => {
     root.insert(1);
     root.insert(3);
     root.insert(0);
-    assert.equal(root.search(3).data, 3);
-    assert.equal(root.search(4), null);
+    expect(root.search(3).data).toEqual(3);
+    expect(root.search(4)).toEqual(null);
   });
 });
-
-mocha.run();
 ```
 
 To validate that a binary tree is a BST, we can recursively check that every left child must be less than the root
@@ -3579,21 +2905,18 @@ function validate(node, min = null, max = null) {
   if (node.right && !validate(node.right, node.data, max)) return false;
   return true;
 }
+```
 
-mocha.setup('bdd');
-const { assert } = chai;
-
+```javascript
 describe('Validate a Binary Search Tree', () => {
   it('Should validate a binary search tree', () => {
     const root = new Node(2);
     root.insert(1);
     root.insert(3);
     root.insert(0);
-    assert.equal(validate(root), true);
+    expect(validate(root)).toEqual(true);
   });
 });
-
-mocha.run();
 ```
 
 ## Conclusion
