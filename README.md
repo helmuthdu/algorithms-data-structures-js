@@ -1,4 +1,4 @@
-# Algorithms in JavaScript
+# [Algorithms in JavaScript](https://medium.com/siliconwat/algorithms-in-javascript-b0bed68f4038)
 
 40 Problems, Solutions, and Explanations
 
@@ -3622,8 +3622,6 @@ More importantly, some things in this world are impossible to achieve alone. Mor
 together and for each other are the most satisfying and meaningful.
 
 References:
-
-- [https://medium.com/siliconwat/algorithms-in-javascript-b0bed68f4038](https://medium.com/siliconwat/algorithms-in-javascript-b0bed68f4038)
 
 - [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
