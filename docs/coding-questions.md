@@ -2,7 +2,7 @@
 
 Question: What is the value of `foo`?
 ```javascript
-var foo = 10 + '20';
+let foo = 10 + '20';
 ```
 
 Question: What will be the output of the code below?
