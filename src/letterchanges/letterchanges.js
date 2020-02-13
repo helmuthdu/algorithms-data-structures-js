@@ -15,7 +15,7 @@ const letterChanges = str => {
   const number = /[0-9]/gi;
   let out = '';
   for (let char of str) {
-    const nextChar = (char.match(number) || !char.match(letter)) ? char : String.fromCharCode(char.charCodeAt(0) + 1)
+    const nextChar = char.match(number) || !char.match(letter) ? char : String.fromCharCode(char.charCodeAt(0) + 1);
     out = out + (String(nextChar).match(vowels) ? nextChar.toUpperCase() : nextChar);
   }
   return out;
