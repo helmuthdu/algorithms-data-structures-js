@@ -1,6 +1,7 @@
 # Testing Questions
 
 * What are some advantages/disadvantages to testing your code?
+* What is black test and white testing
 * What tools would you use to test your code's functionality?
 * What is the difference between a unit test and a functional/integration test?
 * What is the purpose of a code style linting tool?
@@ -15,3 +16,8 @@
 * Choose the right environment for tests: try covering a wide range of scenarios, including different devices, OS and user profiles.
 * Use unit and integration tests: unit tests will isolate each component of your app, while integration tests will assess how well each subsystem works. Run unit tests in parallel to save time, but don't move onto integration tests until you have ensured that individual components work like they should.
 * Don’t neglect the UI: use functional tests performed by human testers to perform end-to-end scenarios and get a feel for the UI of the app. It might be best to wait until you have fixed issues detected during unit and integration tests.
+
+### What is black test and white testing?
+
+* Black testing is the one used by e2e tools, when the implementation detail is hidden.
+* White testing is the one used for unit testing, when the is required to test the code implementation.
