@@ -165,33 +165,27 @@ Things to note are:
   - Currently, `child.constructor` is pointing to the `Parent`:
 
 ```javascript
-child.constructor = ƒ () {
-  this.name = "Parent";
-}
-child.constructor.name = "Parent"
+child.constructor = function() {
+  this.name = 'Parent';
+};
+
+child.constructor.name = 'Parent';
 ```
 
 - If we'd like to correct this, one option would be to do:
 
 ```javascript
 function Child() {
-  Parent.call(this);
-  this.name = 'child';
+  parent.call(this);
 }
 
-Child.prototype = Parent.prototype;
+Child.prototype = Object.create(Parent.prototype);
+
+Object.assign(Child.prototype, OtherParent.prototype);
+
 Child.prototype.constructor = Child;
 
-const c = new Child();
-
-c.cry();
-// Outputs: waaaaaahhhh!
-
-c.greet();
-// Outputs: hello from Parent
-
-c.constructor.name;
-// Outputs: "Child"
+Child.prototype.myMethod = function() {};
 ```
 
 ###### References

@@ -12,8 +12,6 @@ Answers to [Front-end Job Interview Questions - HTML Questions](https://github.c
 - [Why is it generally a good idea to position CSS `<link>`s between `<head></head>` and JS `<script>`s just before `</body>`? Do you know any exceptions?](#why-is-it-generally-a-good-idea-to-position-css-links-between-headhead-and-js-scripts-just-before-body-do-you-know-any-exceptions)
 - [What is progressive rendering?](#what-is-progressive-rendering)
 - [Why you would use a `srcset` attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.](#why-you-would-use-a-srcset-attribute-in-an-image-tag-explain-the-process-the-browser-uses-when-evaluating-the-content-of-this-attribute)
-- [Have you used different HTML templating languages before?](#have-you-used-different-html-templating-languages-before)
-- [What kind of things must you be wary of when designing or developing for multilingual sites?](#what-kind-of-things-must-you-be-wary-of-when-designing-or-developing-for-multilingual-sites)
 
 ### What does a DOCTYPE do?
 
@@ -196,22 +194,6 @@ If the resolution is retina (2x), the browser will use the closest resolution ab
 - https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/
 
 [[↑] Back to top](#html-questions)
-
-### What kind of things must you be wary of when designing or developing for multilingual sites?
-
-Use unicode UTF8
-Use language and direction attributes in html tag
-Use tools to help with date, plural and currency instead of doing it manually
-
-[[↑] Back to top](#html-questions)
-
-### Have you used different HTML templating languages before?
-
-Yes, Pug (formerly Jade), ERB, Slim, Handlebars, Jinja, Liquid, just to name a few. In my opinion, they are more or less the same and provide similar functionality of escaping content and helpful filters for manipulating the data to be displayed. Most templating engines will also allow you to inject your own filters in the event you need custom processing before display.
-
-[[↑] Back to top](#html-questions)
-
-### Other Answers
 
 - https://neal.codes/blog/front-end-interview-questions-html/
 - http://peterdoes.it/2015/12/03/a-personal-exercise-front-end-job-interview-questions-and-my-answers-all/
